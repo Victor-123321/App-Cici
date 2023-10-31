@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -14,7 +14,7 @@ import { json } from 'body-parser';
   styleUrls: ['./main.component.scss']
 })
 
-export class MainComponent {
+export class MainComponent implements OnInit {
 
   constructor(
     private oauthService: OAuthService,
@@ -23,7 +23,10 @@ export class MainComponent {
     private http: HttpClient
     
   ) { }
-
+  ngOnInit() {
+    // This function will be called when the page loads
+    this.showData();
+  }
 
   @Injectable({
     providedIn: 'root' // This makes the service available as a singleton across your app

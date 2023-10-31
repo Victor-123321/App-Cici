@@ -25,7 +25,6 @@ mongoose.connect('mongodb://localhost/Test', {
 
 app.post('/api/enviarbdd', (req, res) => {
   
-  console.log('Datos del Usuario:', req.body); // Aquí se reciben los datos en JSON del usuario
 
   const DatosPostBack = req.body;
 
@@ -35,21 +34,26 @@ app.post('/api/enviarbdd', (req, res) => {
     fechanacimiento: JSON.stringify(DatosPostBack.infoUsuario.cumpleaños),
     avatar: DatosPostBack.datosGenerales.picture,
     sexo: DatosPostBack.infoUsuario.genero
-    //seguir con todos los campos que podamos llenar, hay que ver como llenar los que no, como tomar
-    //la ubicación del usuario, su género y su edad
+    // Add other fields as needed
+  };
+  
+  async function checkAndSaveUser() {
+    try {
+      const existingDocument = await usuarioModel.findOne({ email: datosModelo.email });
+  
+      if (existingDocument) {
+        console.log("Usuario ya existente en la base de datos");
+      } else {
+        const nuevoUsuario = new usuarioModel(datosModelo);
+        await nuevoUsuario.save();
+        console.log("Usuario guardado en la base de datos");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
-
-  const nuevoUsuario = new usuarioModel(datosModelo);
-
-  nuevoUsuario.save()
-  .then(() => {
-    res.status(200).send('Datos Guardados satisfactoriamente');
-  })
-  .catch((error) => {
-    console.error('Error guardando datos: ', error);
-    res.status(500).send('Error saving data');
-  });
-
+  
+  checkAndSaveUser();
   //Aquí hay que enviarla a la base de datos de Mongo
 
   
