@@ -1,0 +1,33 @@
+
+.BodyMain{
+    h2{
+        text-align: center;
+    }
+}
+
+.Botones{
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    button{
+      padding: 2%;
+      font-size: 2vw;
+        transition: all 0.2s;
+
+        &:hover{
+            transform: translateY(-15%);
+            -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        }
+
+     .btnData{
+        background-color: greenyellow;
+     }  
+     .btnClose{
+        color: white;
+        background-color: brown;
+     } 
+
+    }
+}

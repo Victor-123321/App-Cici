@@ -1,0 +1,13 @@
+{
+  "name": "RegistrarUsuarios",
+  "integrations": {},
+  "type": "angular",
+
+  "proxies": [
+    {
+      "path": "/your-auth-endpoint",
+      "proxyUrl": "https://accounts.google.com/gsi/client"
+    }
+  ]
+
+}
