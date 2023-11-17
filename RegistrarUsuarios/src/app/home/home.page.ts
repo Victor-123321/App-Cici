@@ -13,7 +13,12 @@ export class HomePage {
     // You can add validation and data processing logic here
     console.log('Data to be submitted:', this.data);
   }
+  showLogin: boolean = false;
 
+  // Method to toggle the visibility of app-login
+  toggleLogin() {
+    this.showLogin = !this.showLogin;
+  }
   constructor() {}
 
 }

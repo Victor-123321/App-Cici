@@ -1,4 +1,16 @@
 
+@mixin EstilosBoton(){
+    padding: 1%;
+    border-radius: 15px;
+    font-size: 15px;
+    transition: all 0.2s;
+
+    &:hover{
+        position: translateY(-5%);
+    }
+
+}
+
 .BodyMain{
     h2{
         text-align: center;
@@ -30,4 +42,47 @@ box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
      } 
 
     }
+}
+
+.modalSubirImagen{
+    button{
+        @include EstilosBoton();
+    }
+
+    h2, label, input{
+        color: white;
+    }
+    width: 100vw;
+    height: fit-content;
+
+    display: flex;
+    justify-content: center;
+
+    .containerModal{
+        width: 60%;
+        background-color: rgba(255,255,255,0.1);
+        padding: 2%;
+        border-radius: 15px;
+        .rowSubirImagen{
+            
+            img{
+                margin-left: 10%;
+                width: 100px;
+            }
+        }
+        .rowDetalles{
+            display: flex;
+            flex-flow: column;
+            input, label{
+                font-size: 15px;
+            }
+
+        }
+
+        .guardarbdd{
+            margin: 2%;
+        }
+
+    }
+
 }

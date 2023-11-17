@@ -3,13 +3,14 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const usuarioModel = require('./src/Usuario/usuarioModel');
+const imagenModel = require('./src/Usuario/imagenModel');
 
 const app = express();
 const port = process.env.PORT || 5500;
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '100mb'}));
 
 // Database connection
 mongoose.connect('mongodb://localhost/Test', {
@@ -22,6 +23,26 @@ mongoose.connect('mongodb://localhost/Test', {
 .catch(function(error){
   console.log(error);
 });
+
+
+
+app.post('/api/enviarimagenbdd', (req, res) => {
+
+  const DatosPostBack = req.body;
+
+  const datosModelo = {
+    usuario: DatosPostBack.usuario,
+    source: DatosPostBack.source,
+    nombre: DatosPostBack.nombre,
+    detalles: DatosPostBack.detalles,
+    ubicacion: DatosPostBack.ubicacion
+  }
+
+  const nuevoUsuario = new imagenModel(datosModelo);
+   nuevoUsuario.save();
+
+});
+
 
 app.post('/api/enviarbdd', (req, res) => {
   
@@ -48,25 +69,19 @@ app.post('/api/enviarbdd', (req, res) => {
         await nuevoUsuario.save();
         console.log("Usuario guardado en la base de datos");
       }
+      
     } catch (error) {
       console.error(error);
     }
   }
   
   checkAndSaveUser();
-  //Aquí hay que enviarla a la base de datos de Mongo
 
   
 });
 
-  
 
-
-
-// Define your MongoDB Schema and Models here
- 
-// Define your API routes here
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Servidor corriendo en el puerto: ${port}`);
 });

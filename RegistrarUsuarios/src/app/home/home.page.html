@@ -1,21 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Inicio
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
+<p>test test test2</p>
 <ion-content [fullscreen]="true">
-  
-  <app-login></app-login>
+  <h1>Titulo App</h1>
+  <p>test test test</p>
 
-  <div id="container">
-    
-    <strong>porfi funciona</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-button (click)="toggleLogin()">
+    Registrarse
+  </ion-button>
 
-
-
+  <!-- Conditionally show app-login based on 'showLogin' property -->
+ <app-login *ngIf="showLogin"></app-login>
 </ion-content>

@@ -6,11 +6,30 @@
 
     <div class="bodyMain">
 
-        <p>Subir Fotografía</p>
+
+        <div class="modalSubirImagen">
+            <div class="containerModal">
+                <h2>Subir Imagen</h2>
+                <div class="rowSubirImagen">
+                    <button id="cargarFoto" (click) = "LoadPhoto()">Subir Fotografía</button>
+                    <img id="imagenTest" alt="Sube o toma una imagen porfavor">
+                </div>
+                <div class="rowDetalles">
+                    <label for="txtNombre">Nombre de la Imagen</label>
+                    <input type="text" name="txtNombre" id="txtNombre">
+                    <label for="txtDetalles">Detalles de la Imagen</label>
+                    <input type="text" name="txtDetalles" id="txtDetalles">
+                </div>
+                <button class="guardarbdd" id="guardarFotoBdd" (click) = "guardarFotoBdd()">Guardar Información</button>
+            </div>
+        </div>
+
+        <p></p>
+       
         
         
     </div>
-
+    
    
     
 </div>

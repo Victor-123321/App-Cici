@@ -1,13 +1,14 @@
 {
   "name": "RegistrarUsuarios",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular",
-
   "proxies": [
     {
       "path": "/your-auth-endpoint",
       "proxyUrl": "https://accounts.google.com/gsi/client"
     }
   ]
-
 }

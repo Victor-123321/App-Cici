@@ -5,8 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc'
 import { Injectable } from '@angular/core';
 import { Observable, lastValueFrom } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { json } from 'body-parser';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-main',
@@ -14,21 +14,24 @@ import { json } from 'body-parser';
   styleUrls: ['./main.component.scss']
 })
 
+
+
 export class MainComponent implements OnInit {
+imagenbase64:any;
 
   constructor(
     private oauthService: OAuthService,
     private authGoogleService: DataService,
     private router: Router,
     private http: HttpClient
-    
+
   ) { }
   ngOnInit() {
     // This function will be called when the page loads
     this.showData();
   }
 
-  @Injectable({
+  @Injectable({    
     providedIn: 'root' // This makes the service available as a singleton across your app
   })
  
@@ -76,7 +79,7 @@ console.log(infoUsuario, datosGenerales);
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${accessToken}`,
       });
-      console.log(combinedData);
+     
       // Now, you can use userInfo with await
       const result = await lastValueFrom(this.http
         .post(serverUrl, combinedData, { headers }))
@@ -94,4 +97,85 @@ console.log(infoUsuario, datosGenerales);
     this.router.navigate(['login']);
   }
 
+async guardarFotoBdd(){
+  
+  const txtnombre = document.getElementById("txtNombre") as HTMLInputElement;
+  const txtdetalles = document.getElementById("txtDetalles") as HTMLInputElement;
+  
+  const imagenTest = document.getElementById("imagenTest") as HTMLImageElement;
+
+  const uploadUrl = 'http:localhost:5500/api/subirimagenserver'; // Replace with your server endpoint
+
+  
+
+
+
+  if(txtnombre?.value == null || txtdetalles?.value == null){
+    alert('Introduce valores en los campos!');
+  } else {
+
+ 
+    const emailUsuario = this.authGoogleService.getProfile()['email'];
+
+    const coordinates = await Geolocation.getCurrentPosition();
+  
+
+    const coordenadas = {
+      latitud:  coordinates.coords.latitude,
+      longitud: coordinates.coords.longitude,
+      precision: coordinates.coords.accuracy
+    }
+    
+    // Creamos un objeto de la imagen
+const datosImagen = {
+  usuario: emailUsuario,
+  source: this.imagenbase64,
+  nombre: txtnombre.value,
+  detalles: txtdetalles.value,
+  ubicacion: coordenadas
+};
+
+// Convertimos el objeto a JSON
+const jsonImagen: string = JSON.stringify(datosImagen, null, 2); // el tercer parámetro es para indentar
+
+const servidor = "http://localhost:5500/api/enviarimagenbdd";
+
+//Creamos un POST enviando los datos por JSON
+fetch(servidor, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: jsonImagen
+})
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response from the server
+        console.log("Respuesta:", data);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+  }
+}
+
+  async LoadPhoto(){
+
+    const uploadUrl = "http://localhost:5500/api/subirimagenserver"
+    const imagenTest = document.getElementById("imagenTest") as HTMLImageElement;
+
+const image = await Camera.getPhoto({
+  quality: 90,
+  allowEditing: true,
+  resultType: CameraResultType.Base64
+});
+  
+      if(image.base64String){
+        this.imagenbase64 = image.base64String;
+      }
+    
+    
+    
+    
+  }
 }
