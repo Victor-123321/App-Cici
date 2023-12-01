@@ -17,6 +17,10 @@
     "express": "^4.18.2",
     "googleapis": "^128.0.0",
     "mongoose": "^7.6.3",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.32.6"
+  },
+  "devDependencies": {
+    "@angular/cli": "17.0.3"
   }
 }

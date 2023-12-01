@@ -43,6 +43,15 @@ app.post('/api/enviarimagenbdd', (req, res) => {
 
 });
 
+app.get('/api/locations', async (req, res) => {
+  try {
+    const locations = await mongoose.model(datosModelo).find({});
+    res.json(locations);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 app.post('/api/enviarbdd', (req, res) => {
   

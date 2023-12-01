@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc'
 import { Injectable } from '@angular/core';
-import { Observable, lastValueFrom } from 'rxjs';
+import {  Observable, lastValueFrom } from 'rxjs';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
+
 
 @Component({
   selector: 'app-main',
@@ -55,7 +56,7 @@ imagenbase64:any;
       console.error('Error fetching user profile:', error);
       return '';
     }
-  }
+                                                                          }
 
   async showData() {
     try {
@@ -159,23 +160,42 @@ fetch(servidor, {
   }
 }
 
-  async LoadPhoto(){
+async LoadPhoto() {
+  const uploadUrl = "http://localhost:5500/api/subirimagenserver";
+  const imagenTest = document.getElementById("imagenTest") as HTMLImageElement;
 
-    const uploadUrl = "http://localhost:5500/api/subirimagenserver"
-    const imagenTest = document.getElementById("imagenTest") as HTMLImageElement;
+  const image = await Camera.getPhoto({
+    quality: 50,
+    width: 800,
+    height: 600,
+    allowEditing: true,
+    resultType: CameraResultType.Base64
+  });
 
-const image = await Camera.getPhoto({
-  quality: 90,
-  allowEditing: true,
-  resultType: CameraResultType.Base64
-});
-  
-      if(image.base64String){
-        this.imagenbase64 = image.base64String;
-      }
-    
-    
-    
-    
+  if (image.base64String) {
+
+    // Now 'compressedBase64' is the compressed image, send it to the server
+    try {
+      const response = await this.http.post(uploadUrl, { base64String: image.base64String });
+
+      console.log('Respuesta del servidor:', response);
+
+      // Handle the server response as needed
+    } catch (error) {
+      console.error('Error enviando imagen al servidor:', error);
+    }
   }
+}
+
+private base64ToBlob(base64String: string): Blob {
+  const byteCharacters = atob(base64String);
+  const byteNumbers = new Array(byteCharacters.length);
+
+  for (let i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i);
+  }
+
+  const byteArray = new Uint8Array(byteNumbers);
+  return new Blob([byteArray], { type: 'image/jpeg' }); // Adjust the type as needed
+}
 }

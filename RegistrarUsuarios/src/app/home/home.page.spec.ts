@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { Component } from '@angular/core';
 
 import { HomePage } from './home.page';
 

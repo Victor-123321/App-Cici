@@ -1,0 +1,9 @@
+<ion-button (click)="toggleLogin()">
+  Registrarse
+</ion-button>
+
+<ion-grid>
+  <ion-row class="ion-justify-content-center">
+    <app-login *ngIf="showLogin"></app-login>
+  </ion-row>
+</ion-grid>
