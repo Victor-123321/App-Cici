@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { UsuarioComponent } from './usuario.component';
-import { TabsComponentModule } from '../tabs/tabs.component.module';
+import { ReportesComponent } from './reportes.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
-    TabsComponentModule
+    IonicModule
   ],
-  declarations: [UsuarioComponent]
+  declarations: [ReportesComponent],
+  exports: [ReportesComponent]
 })
-export class UsuarioComponentModule {
+export class ReportesComponentModule {
 }

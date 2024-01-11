@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController, IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +13,10 @@ export class HomePage {
   showLogin: boolean = false;
   data: { field1: string, field2: string } = { field1: '', field2: '' };
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
- 
-  constructor(private modalController: ModalController) {}
 
+  constructor(
+    private modalController: ModalController,
+    ) {}
   toggleLogin() {
     this.showLogin = !this.showLogin;
   }
@@ -40,4 +42,7 @@ export class HomePage {
     // You can add validation and data processing logic here
     console.log('Data to be submitted:', this.data);
   }
+
+  
+
 }

@@ -10,10 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomePageModule } from './home/home.module';
 import { LoginComponentModule } from './login/login.module';
 import { UsuarioComponentModule } from './usuario/usuario.component.module';
+import { ReportesComponentModule } from './reportes/reportes.component.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, OAuthModule.forRoot(), HttpClientModule, HomePageModule, LoginComponentModule, UsuarioComponentModule, TabsComponentModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, OAuthModule.forRoot(), ReportesComponentModule, HttpClientModule, HomePageModule, LoginComponentModule, UsuarioComponentModule, TabsComponentModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

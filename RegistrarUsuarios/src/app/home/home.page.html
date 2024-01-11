@@ -8,7 +8,7 @@
         <ion-buttons slot="start">
           <ion-button> Inicio </ion-button>
         </ion-buttons>
-        <ion-chip slot="end">
+        <ion-chip slot="end"> <!--Tenemos que cargar la informaciòn del usuario registrado-->
           <ion-avatar>
             <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
           </ion-avatar>
@@ -19,84 +19,10 @@
     </ion-header>
 
 
-  <!-- Jumbotron with Background Image -->
+    <app-reportes></app-reportes>
 
-  <!-- Information Placeholders -->
-  <div class="information">
-    <!-- Post -->
-    <ion-card class="cardPost">
-      <ion-card-header>
-        <ion-card-subtitle>
-          <ion-chip>
-          <ion-avatar>
-            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-          </ion-avatar>
-          <ion-label>Usuario Ejemplo</ion-label>
-          <ion-icon name="close-circle"></ion-icon>
-        </ion-chip>
-      </ion-card-subtitle>
-      <ion-card-title>Bache en el Camino</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <div class="contentPost">
-          <p>Hay un bache en el kilómetro 54 de la carretera a Vallarta</p>
-          <div class="ImagenPost">
-            <img src="https://images.unsplash.com/photo-1542242476-5a3565835a38?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-            <div class="floatUbicacion">
-              <ion-icon name="pin-outline" size="large"></ion-icon>
-            </div>
-          </div>
-          
-        </div>
-        <div class="footerPost">
-          <div class="btnFooterPost">
-            <ion-item>
-              <ion-button fill="clear"><ion-icon size="large" name="thumbs-up-outline"></ion-icon></ion-button>
-              <ion-badge slot="end">22</ion-badge>
-            </ion-item>
-            
-          </div>
-          <div class="btnFooterPost">
-            <ion-item>
-              <ion-button fill="clear"><ion-icon size="large" name="thumbs-up-outline"></ion-icon></ion-button>
-              <ion-badge slot="end">22</ion-badge>
-            </ion-item>
-          </div>
-          <div class="btnFooterPost">
-            <ion-item>
-              <ion-button fill="clear"><ion-icon size="large" name="thumbs-up-outline"></ion-icon></ion-button>
-              <ion-badge slot="end">22</ion-badge>
-            </ion-item>
-          </div>
-        </div>
-      </ion-card-content>
-    </ion-card>
-
-  <!-- Post -->
-
-   <!-- Post -->
-
-    <ion-card>
-      <ion-card-header>
-        Information Placeholder 2
-      </ion-card-header>
-      <ion-card-content>
-        <!-- Replace with dynamic content -->
-        Placeholder content for information 2.
-      </ion-card-content>
-    </ion-card>
-  </div>
-  <ion-row>
-    <!-- Column -->
-    <ion-col size="12" size-md="4">
-      <ion-card>
-        <ion-card-content>
-          <ion-img src="../assets/images/users/5.jpg" alt="Profile Image"></ion-img>
-          <ion-card-title class="ion-text-center">Nombre del Perfil</ion-card-title>
-          <ion-card-subtitle class="ion-text-center">Usuario</ion-card-subtitle>
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
+    <ion-row>
+   
 
     <ion-button href="/usuario">TestUsuario</ion-button>
 

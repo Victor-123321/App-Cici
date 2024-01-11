@@ -1,0 +1,166 @@
+#container {
+    text-align: center;
+  
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  #container strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  
+  #container p {
+    font-size: 16px;
+    line-height: 22px;
+  
+    color: #8c8c8c;
+  
+    margin: 0;
+  }
+  
+  #container a {
+    text-decoration: none;
+  }
+  page-your {
+    .jumbotron {
+      position: relative;
+      height: 200px; /* Adjust the height as needed */
+      overflow: hidden;
+  
+      .background-image {
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+  
+        .jumbotron-content {
+          text-align: center;
+          color: #fff;
+          padding: 20px;
+  
+          h1 {
+            font-size: 2em;
+          }
+  
+          p {
+            font-size: 1.2em;
+          }
+        }
+      }
+    }
+  
+    .information {
+      margin-top: 10%;
+      ion-card {
+        margin-bottom: 20px;
+  
+        ion-card-header {
+          background-color: #f8f8f8;
+          font-weight: bold;
+        }
+      }
+    }
+    
+  }
+  
+  
+  
+  .cardPost{
+    .ImagenPost{
+      position: relative;
+      .floatUbicacion{
+        padding: 2%;
+        background-color: rgb(0,0,0);
+        border: 1px solid goldenrod;
+        position: absolute;
+        top: 1%;
+        right: 1%;
+        border-radius: 50%;
+      }
+    }
+    .footerPost{
+      margin-top: 4%;
+      padding-top: 2%;
+      border-top: .5px solid lightgray;
+      display: flex;
+      justify-content: space-around;
+      ion-item{
+        background: transparent !important;
+        --background: 0;
+      }
+      .item-native{
+        background: transparent !important;
+      }
+    }
+  }
+  
+  ion-card-header{
+    flex-flow: column;
+  }
+  .headerInicio{
+    width: 100%;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    background-position: center;
+    background-image: url('https://images.unsplash.com/photo-1542242476-5a3565835a38?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 50vh;
+  
+    h1{
+      color: black;
+      width: fit-content;
+      border-radius: 50px;
+      padding: 1%;
+      background-color: rgba(255,255,255,0.6);
+      font-size: 3vw;
+    }
+  
+  }
+  
+  page-perfil {
+    .page-titles {
+      col {
+        ion-title {
+          color: #f13a11 !important;
+        }
+      }
+    }
+  
+    ion-card {
+      margin-bottom: 20px;
+  
+      ion-img {
+        border-radius: 50%;
+      }
+  
+      form {
+        .form-group {
+          label {
+            color: #000 !important;
+          }
+  
+          input,
+          select {
+            color: #000 !important;
+          }
+  
+          button {
+            margin-top: 15px;
+          }
+        }
+      }
+    }
+  }

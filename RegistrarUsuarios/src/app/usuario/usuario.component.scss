@@ -1,0 +1,12 @@
+.ImagenPerfil{
+    background: var(--ion-card-background, var(--ion-item-background, var(--ion-background-color, #fff)));
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2%;
+    img{
+        width: 33%;
+        border-radius: 50%;
+    }
+}

@@ -8,14 +8,11 @@ import {  Observable, lastValueFrom } from 'rxjs';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
 
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-
-
 
 export class MainComponent implements OnInit {
 imagenbase64:any;
@@ -28,7 +25,6 @@ imagenbase64:any;
 
   ) { }
   ngOnInit() {
-    // This function will be called when the page loads
     this.showData();
   }
 

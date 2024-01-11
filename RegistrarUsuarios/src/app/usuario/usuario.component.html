@@ -1,3 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button href="/"> Inicio </ion-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+   
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!--TODO: Hacer que todo esto lo cargue desde el modelo
+      y hacer un put que modifique los datos del usuario en el servidor-->
+<ion-row>
+  <div class="ImagenPerfil">
+    <p class="nomUsuario">Usuario</p>
+    <img src="https://i.redd.it/ol6qbxqbgqo51.jpg" alt="">
+    
+    <p class="editar">Editar</p>
+  </div>
+</ion-row>
+
 <ion-row>
 
   <ion-col size="12" size-md="8">
@@ -31,7 +54,7 @@
           
           <ion-item>
             <ion-label position="floating">Genero</ion-label>
-            <ion-select placeholder="Seleccione" interface="popover">
+            <ion-select interface="popover">
               <ion-select-option>Hombre</ion-select-option>
               <ion-select-option>Mujer</ion-select-option>
             </ion-select>
@@ -44,4 +67,6 @@
   </ion-col>
   <!-- Column -->
 </ion-row>
+</ion-content>
 
+<app-tabs></app-tabs>

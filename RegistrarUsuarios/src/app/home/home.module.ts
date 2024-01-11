@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { LoginComponentModule } from '../login/login.module';
 import { TabsComponentModule } from '../tabs/tabs.component.module';
+import { ReportesComponentModule } from '../reportes/reportes.component.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -13,7 +14,8 @@ import { TabsComponentModule } from '../tabs/tabs.component.module';
     IonicModule,
     HomePageRoutingModule,
     LoginComponentModule,
-    TabsComponentModule
+    TabsComponentModule,
+    ReportesComponentModule
   ],
   declarations: [HomePage]
 })
