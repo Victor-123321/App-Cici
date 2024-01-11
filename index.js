@@ -43,6 +43,17 @@ app.post('/api/enviarimagenbdd', (req, res) => {
 
 });
 
+
+//Ver como agarrar la id del usuario, esto debe funcionar, excepto si no funciona
+app.get('/api/getUsuario/:id', async (req,res) => {
+  try{
+    const usuario = await imagenModel.findById(req.params.Usuario);
+    res.json(usuario)
+  } catch(ex) {
+    res.status(500).send(ex);
+  }
+})
+
 app.get('/api/locations', async (req, res) => {
   try {
     const locations = await mongoose.model(datosModelo).find({});
@@ -90,7 +101,6 @@ app.post('/api/enviarbdd', (req, res) => {
 });
 
 //Cargar todos los reportes de la base de datos
-//TODO: Cargar los datos del usuario que lo subió, mínimo Nombre y Foto
 app.get('/api/cargarReportes', async (req, res) => {
   try {
       const images = await imagenModel.find().exec();
