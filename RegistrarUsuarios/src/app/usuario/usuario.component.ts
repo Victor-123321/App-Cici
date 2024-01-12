@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
@@ -7,8 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() {}
+  datosUsuario: any[];
+
+  ngOnInit() {
+
+  }
+
+  cargarReportes() {
+    const apiUrl = "http://localhost:5500/api/cargarReportes";
+    this.http.get<any[]>(apiUrl).subscribe(
+      (data) => {
+         this.reports = data;
+      },
+      (error) => {
+        console.error('Error fetching reports:', error);
+      }
+    );
+  }
 
 }
