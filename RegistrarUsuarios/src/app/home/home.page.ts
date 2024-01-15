@@ -12,7 +12,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class HomePage {
   showLogin: boolean = false;
   data: { field1: string, field2: string } = { field1: '', field2: '' };
-  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  message = 'Abrir el modal automàticamente cuando se presiona el botón';
 
   constructor(
     private modalController: ModalController,

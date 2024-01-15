@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-logout',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoutComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private authGoogleService: DataService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authGoogleService.logout();
+    window.location.href="/login";
+  }
 
 }

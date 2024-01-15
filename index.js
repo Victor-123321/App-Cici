@@ -84,12 +84,13 @@ app.post('/api/enviarbdd', (req, res) => {
   
       if (existingDocument) {
         console.log("Usuario ya existente en la base de datos");
+          
       } else {
         const nuevoUsuario = new usuarioModel(datosModelo);
         await nuevoUsuario.save();
         console.log("Usuario guardado en la base de datos");
       }
-      
+      res.json(datosModelo.nombre);
     } catch (error) {
       console.error(error);
     }
@@ -143,7 +144,25 @@ app.get('/api/cargarReportesUsuario/:Usuario', async (req,res) => {
   }
 });
 
+
 //Actualizar la información del usuario
+
+app.put('/api/actualizarUsername/:idUsuario/:nombreUsuario', async(req,res) => {
+
+  try{
+
+    const filtro = {_id: req.params.Usuario}
+    const update = {nombre: req.params.nombre}
+    const opc = {new: true}
+    const usuarioUpdated = usuarioModel.findOneAndUpdate(filtro, update, opc)
+
+    res.json(usuarioUpdated);
+
+  } catch(ex){
+    res.status(500).send(ex);
+  }
+
+});
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en el puerto: ${port}`);

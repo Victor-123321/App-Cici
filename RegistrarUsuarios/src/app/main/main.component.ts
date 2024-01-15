@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc'
 import { Injectable } from '@angular/core';
-import {  Observable, lastValueFrom } from 'rxjs';
+import {  Observable, firstValueFrom, lastValueFrom } from 'rxjs';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
 
@@ -37,7 +37,8 @@ imagenbase64:any;
     const peopleApiUrl = 'https://people.googleapis.com/v1/people/me?personFields=genders,birthdays';
   
     try {
-      var profile: any = await this.http.get(peopleApiUrl, { headers: { Authorization: `Bearer ${accessToken}` } }).toPromise();
+      var profile: any = await firstValueFrom(this.http.get(peopleApiUrl, { headers: { Authorization: `Bearer ${accessToken}` } })) ;
+    
   
      // const cumpleañosGenero = Object.assign({}, profile.birthdays[0].date, profile.genders[0].value)
      const cumpleaños = profile.birthdays[0].date;
