@@ -112,16 +112,15 @@ async guardarFotoBdd(){
 
     const emailUsuario = this.authGoogleService.getProfile()['email'];
     const coordinates = await Geolocation.getCurrentPosition();
-    
-    const dir = this.nominatim.getAddress(coordinates.coords.latitude, coordinates.coords.longitude);
-      
-
-    const coordenadas = {
+    var coordenadas = {
       latitud:  coordinates.coords.latitude,
       longitud: coordinates.coords.longitude,
       precision: coordinates.coords.accuracy,
-      direccion: dir
+      direccion: Observable
     }
+    
+    coordenadas.direccion = await firstValueFrom(this.nominatim.getAddress(coordinates.coords.latitude, coordinates.coords.longitude));
+    console.log(coordenadas);
     
     // Creamos un objeto de la imagen
 const datosImagen = {
@@ -175,6 +174,7 @@ async LoadPhoto() {
       const response = await this.http.post(uploadUrl, { base64String: image.base64String });
 
       console.log('Respuesta del servidor:', response);
+      this.imagenbase64 = image.base64String;
 
       // Handle the server response as needed
     } catch (error) {
