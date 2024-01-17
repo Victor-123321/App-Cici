@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import {  Observable, firstValueFrom, lastValueFrom } from 'rxjs';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
+import { NominatimService } from '../nominatim.service';
 
 @Component({
   selector: 'app-main',
@@ -21,7 +22,8 @@ imagenbase64:any;
     private oauthService: OAuthService,
     private authGoogleService: DataService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private nominatim: NominatimService
 
   ) { }
   ngOnInit() {
@@ -104,24 +106,21 @@ async guardarFotoBdd(){
 
   const uploadUrl = 'http:localhost:5500/api/subirimagenserver'; // Replace with your server endpoint
 
-  
-
-
-
   if(txtnombre?.value == null || txtdetalles?.value == null){
     alert('Introduce valores en los campos!');
   } else {
 
- 
     const emailUsuario = this.authGoogleService.getProfile()['email'];
-
     const coordinates = await Geolocation.getCurrentPosition();
-  
+    
+    const dir = this.nominatim.getAddress(coordinates.coords.latitude, coordinates.coords.longitude);
+      
 
     const coordenadas = {
       latitud:  coordinates.coords.latitude,
       longitud: coordinates.coords.longitude,
-      precision: coordinates.coords.accuracy
+      precision: coordinates.coords.accuracy,
+      direccion: dir
     }
     
     // Creamos un objeto de la imagen

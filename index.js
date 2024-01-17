@@ -145,6 +145,8 @@ app.get('/api/cargarReportesUsuario/:Usuario', async (req,res) => {
 });
 
 
+//TODO: Que solo cargue la información del usuario
+//Para Jesùs
 //Actualizar la información del usuario
 
 app.put('/api/actualizarUsername/:idUsuario/:nombreUsuario', async(req,res) => {
