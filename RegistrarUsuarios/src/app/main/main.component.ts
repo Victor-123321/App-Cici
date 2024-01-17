@@ -116,11 +116,10 @@ async guardarFotoBdd(){
       latitud:  coordinates.coords.latitude,
       longitud: coordinates.coords.longitude,
       precision: coordinates.coords.accuracy,
-      direccion: Observable
+      direccion: undefined
     }
-    
-    coordenadas.direccion = await firstValueFrom(this.nominatim.getAddress(coordinates.coords.latitude, coordinates.coords.longitude));
-    console.log(coordenadas);
+    const dir = await firstValueFrom(this.nominatim.getAddress(coordinates.coords.latitude, coordinates.coords.longitude));
+    coordenadas.direccion = dir.address;
     
     // Creamos un objeto de la imagen
 const datosImagen = {
