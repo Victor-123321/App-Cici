@@ -8,6 +8,7 @@ import {  Observable, firstValueFrom, lastValueFrom } from 'rxjs';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
 import { NominatimService } from '../nominatim.service';
+import { IonImg } from '@ionic/angular';
 
 @Component({
   selector: 'app-main',
@@ -156,7 +157,7 @@ fetch(servidor, {
 
 async LoadPhoto() {
   const uploadUrl = "http://localhost:5500/api/subirimagenserver";
-  const imagenTest = document.getElementById("imagenTest") as HTMLImageElement;
+  const imagenTest = document.getElementById("imagenTest") as any;
 
   const image = await Camera.getPhoto({
     quality: 50,
@@ -167,14 +168,12 @@ async LoadPhoto() {
   });
 
   if (image.base64String) {
-
+ imagenTest.src = "data:image/png;base64," + image.base64String;
     // Now 'compressedBase64' is the compressed image, send it to the server
     try {
       const response = await this.http.post(uploadUrl, { base64String: image.base64String });
-
       console.log('Respuesta del servidor:', response);
       this.imagenbase64 = image.base64String;
-
       // Handle the server response as needed
     } catch (error) {
       console.error('Error enviando imagen al servidor:', error);
