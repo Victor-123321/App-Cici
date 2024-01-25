@@ -8,7 +8,9 @@ import {  Observable, firstValueFrom, lastValueFrom } from 'rxjs';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
 import { NominatimService } from '../nominatim.service';
-import { IonImg } from '@ionic/angular';
+import { register } from 'swiper/element';
+
+register();
 
 @Component({
   selector: 'app-main',
@@ -29,6 +31,22 @@ imagenbase64:any;
   ) { }
   ngOnInit() {
     this.showData();
+
+    //Categorías
+    //TODO: Poner todas las categorías
+    let Categorias = [
+      {
+        nombre: "Vialidad",
+        color: "FF0000"
+      },
+      {
+        nombre: "Crimen",
+        color: "999999"
+      }
+      
+    
+    ];
+
   }
 
   @Injectable({    
