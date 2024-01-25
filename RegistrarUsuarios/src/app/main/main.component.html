@@ -1,35 +1,54 @@
 
-<div class="BodyMain">
+<ion-content class="BodyMain">
+
+    <ion-grid class="bodyMain">
+  
+      <ion-row class="modalSubirImagen">
+        <ion-col class="containerModal">
+  
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Subir Reporte</ion-title>
+            </ion-toolbar>
+          </ion-header>
+  
+          <ion-row class="rowSubirImagen">
+            <ion-img id="imagenTest" src="../../assets/Media/SubirFoto.png" (click)="LoadPhoto()" alt="Sube o toma una imagen porfavor"></ion-img>
+          </ion-row>
+  
+          <ion-row class="rowDetalles">
+            <ion-col>
+              <ion-input label="Nombre del Reporte" labelPlacement="floating" type="text" name="txtNombre" id="txtNombre"></ion-input>
+            </ion-col>
+            <ion-col>
+             
+              <ion-input label="Detalles del Reporte" labelPlacement="floating" type="text" name="txtDetalles" id="txtDetalles"></ion-input>
+            </ion-col>
+          </ion-row>
+  
+          <!--Categorías-->
+          
+            <swiper-container [slidesPerView]="3" [loop]="true">
+                <swiper-slide *ngFor="let categoria of Categorias">
+                    <div class="categoria" [style]="background-color:#{{ categoria.Color }}">
+                        <p>{{categoria.Nombre}}</p>
+                    </div>
+                </swiper-slide>
+                
+              </swiper-container>
+     
 
 
-    <h1 id="TituloMain">Bienvenido!</h1>
-
-    <div class="bodyMain">
-
-        <div class="modalSubirImagen">
-            <div class="containerModal">
-                <h2>Subir Imagen</h2>
-                <div class="rowSubirImagen">
-                    <button id="cargarFoto" (click) = "LoadPhoto()">Subir Fotografía</button>
-                    <img id="imagenTest" alt="Sube o toma una imagen porfavor">
-                </div>
-                <div class="rowDetalles">
-                    <label for="txtNombre">Nombre de la Imagen</label>
-                    <input type="text" name="txtNombre" id="txtNombre">
-                    <label for="txtDetalles">Detalles de la Imagen</label>
-                    <input type="text" name="txtDetalles" id="txtDetalles">
-                </div>
-                <button class="guardarbdd" id="guardarFotoBdd" (click) = "guardarFotoBdd()">Guardar Información</button>
-            </div>
-        </div>
-
-        <p></p>
-       
-        
-        
-    </div>
-    
-   
-    
-</div>
-
+          <ion-row>
+            <ion-col>
+              <ion-button class="guardarbdd" id="guardarFotoBdd" (click)="guardarFotoBdd()">Guardar Información</ion-button>
+            </ion-col>
+          </ion-row>
+  
+        </ion-col>
+      </ion-row>
+  
+    </ion-grid>
+  
+  </ion-content>
+  

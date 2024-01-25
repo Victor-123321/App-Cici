@@ -8,6 +8,9 @@ import {  Observable, firstValueFrom, lastValueFrom } from 'rxjs';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
 import { NominatimService } from '../nominatim.service';
+import { register } from 'swiper/element';
+
+register();
 
 @Component({
   selector: 'app-main',
@@ -28,6 +31,22 @@ imagenbase64:any;
   ) { }
   ngOnInit() {
     this.showData();
+
+    //Categorías
+    //TODO: Poner todas las categorías
+    let Categorias = [
+      {
+        nombre: "Vialidad",
+        color: "FF0000"
+      },
+      {
+        nombre: "Crimen",
+        color: "999999"
+      }
+      
+    
+    ];
+
   }
 
   @Injectable({    
@@ -156,7 +175,7 @@ fetch(servidor, {
 
 async LoadPhoto() {
   const uploadUrl = "http://localhost:5500/api/subirimagenserver";
-  const imagenTest = document.getElementById("imagenTest") as HTMLImageElement;
+  const imagenTest = document.getElementById("imagenTest") as any;
 
   const image = await Camera.getPhoto({
     quality: 50,
@@ -167,14 +186,12 @@ async LoadPhoto() {
   });
 
   if (image.base64String) {
-
+ imagenTest.src = "data:image/png;base64," + image.base64String;
     // Now 'compressedBase64' is the compressed image, send it to the server
     try {
       const response = await this.http.post(uploadUrl, { base64String: image.base64String });
-
       console.log('Respuesta del servidor:', response);
       this.imagenbase64 = image.base64String;
-
       // Handle the server response as needed
     } catch (error) {
       console.error('Error enviando imagen al servidor:', error);

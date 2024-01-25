@@ -24,6 +24,9 @@ var ImagenModel = new Schema({
     ubicacion: {
         type: Object,
         required: true
+    },
+    tags: {
+        type: String
     }
 
 });
