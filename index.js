@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json({limit: '100mb'}));
 
 // Database connection
-mongoose.connect('mongodb://localhost/Test', {
+mongoose.connect('mongodb://127.0.0.1:27017/test', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -149,12 +149,49 @@ app.get('/api/cargarReportesUsuario/:Usuario', async (req,res) => {
 //Para Jesùs
 //Actualizar la información del usuario
 
+// Obtener referencia al modelo de usuario
+const Usuario = mongoose.model('usuario');
+
+app.get('/api/getDatos', async (req, res) => {
+  try {
+    // Verificar si la conexión está establecida
+    if (mongoose.connection.readyState !== 1) {
+      throw new Error('Error de conexión a la base de datos');
+    }
+
+    // Proyección para seleccionar los campos deseados
+    const projection = {
+      nombre: 1,
+      email: 1,
+      fechanacimiento: 1,
+      sexo: 1,
+      avatar: 1,
+      _id: 0 // Excluir el campo _id
+    };
+
+    // Buscar todos los usuarios con la proyección especificada
+    const result = await Usuario.find({}, projection).exec();
+
+    // Enviar el resultado como respuesta
+    res.json(result);
+  } catch (ex) {
+    console.error(ex);
+    res.status(500).json({ error: ex.message });
+  }
+});
+
+
+app.get('/api/test', (req, res) => {
+  res.send('¡Prueba exitosa!');
+});
+
+
 app.put('/api/actualizarUsername/:idUsuario/:nombreUsuario', async(req,res) => {
 
   try{
 
-    const filtro = {_id: req.params.Usuario}
-    const update = {nombre: req.params.nombre}
+    const filtro = {_id: req.params.idUsuario}
+    const update = {nombre: req.params.nombreUsuario}
     const opc = {new: true}
     const usuarioUpdated = usuarioModel.findOneAndUpdate(filtro, update, opc)
 

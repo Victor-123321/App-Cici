@@ -13,10 +13,10 @@
   <!--TODO: Hacer que todo esto lo cargue desde el modelo
       y hacer un put que modifique los datos del usuario en el servidor-->
       
-<ion-row>
+<ion-row *ngIf="user">
   <div class="ImagenPerfil">
-    <p class="nomUsuario">Usuario</p>
-    <img src="https://i.redd.it/ol6qbxqbgqo51.jpg" alt="">
+    <p class="nomUsuario"> {{ user.nombre }} </p>
+    <img [src]="user.avatar" alt=" {{ user.nombre }} ">
     
     <p class="editar">Editar</p>
   </div>

@@ -8,13 +8,13 @@ export class DataService {
 
   constructor(private oauthService: OAuthService,private http: HttpClient) {
     this.initLogin();
-  }
+  } 
 
   initLogin() {
     const config: AuthConfig = {
       issuer: 'https://accounts.google.com',
       strictDiscoveryDocumentValidation: false,
-      clientId: '88404835696-ki1u0jcei9jjsn7lkc80vt56vigglodq.apps.googleusercontent.com',
+      clientId: '88404835696-jjrne7qb2jifc8k5cce477i07be418c1.apps.googleusercontent.com',
       redirectUri: window.location.origin + '/main',
       scope: 'openid profile email https://www.googleapis.com/auth/user.gender.read https://www.googleapis.com/auth/user.birthday.read',
     }
