@@ -93,7 +93,7 @@ console.log(infoUsuario, datosGenerales);
   
       const serverUrl = 'http://localhost:5500/api/enviarbdd';
   
-      const accessToken = '88404835696-ki1u0jcei9jjsn7lkc80vt56vigglodq.apps.googleusercontent.com'; // Replace with your actual access token
+      const accessToken = '88404835696-jjrne7qb2jifc8k5cce477i07be418c1.apps.googleusercontent.com'; // Replace with your actual access token
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${accessToken}`,
